@@ -23,7 +23,7 @@ DOCKER_IMAGE := qemu_stm32
 QEMU := /usr/local/bin/qemu-system-arm
 QEMU_ARGS := -M stm32-p103 -nographic -kernel $(BIN)
 
-.PHONY: all run 
+.PHONY: all  
 
 all: $(ELF) $(BIN) $(DISASM)
 
