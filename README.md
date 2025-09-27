@@ -1,7 +1,8 @@
 # Direct-Drive
 Bare-Metal Example on STM32F103
 - UART Driver to print to Serial Port
-- `.data` and `.bss` initialization 
+- `.data` and `.bss` initialization
+- Context Switch
 
 ```bash
 bin/arm-none-eabi-gcc -fno-common -O0 \
@@ -23,4 +24,9 @@ bin/arm-none-eabi-objdump -S hello.elf > hello.list
 To Execute on `Qemu` 
 ```
 docker run --rm -v $(pwd):/work -w /work qemu_stm32 /usr/local/bin/qemu-system-arm -M stm32-p103 -nographic -kernel hello.bin
+```
+
+To Build 
+```
+make
 ```
