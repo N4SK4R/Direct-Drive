@@ -2,6 +2,7 @@
 #include "reg.h"
 
 #define USART_FLAG_TXE	((uint16_t) 0x0080)
+void activate(unsigned int *stack);
 
 int puts(const char *str)
 {
@@ -12,7 +13,11 @@ int puts(const char *str)
 	return 0;
 }
 
-int sum=10;
+void usertask(void)
+{
+	puts("User Task \n");
+	while (1); /* Never terminate the task */
+}
 
 void main(void)
 {
@@ -26,8 +31,14 @@ void main(void)
 	*(USART2_CR1) = 0x0000000C;
 	*(USART2_CR1) |= 0x2000;
 
-	sum =5;
-	puts("Hello World!");
+
+	unsigned int usertask_stack[20];
+	/* 9 words from bottom to store Initial User State ( 9 registers ) */  
+	unsigned int *usertask_stack_start = usertask_stack + 20 - 9; 
+	/* Last(9th) word would load lr Register */
+	usertask_stack_start[8] = (unsigned int) &usertask;
+
+	activate(usertask_stack_start);
 
 	while (1);
 }
