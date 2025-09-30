@@ -1,8 +1,12 @@
 # Direct-Drive
 Bare-Metal Example on STM32F103
-- UART Driver to print to Serial Port
-- `.data` and `.bss` initialization
-- Context Switch
+- [x] UART Driver to print to Serial Port
+- [x] `.data` and `.bss` initialization
+- [x] One Way Context Switch from User to Privilege mode
+- [ ] MultiTasking
+- [ ] Preemptive Scheduling
+- [ ] User Threads (Basic `RTOS` kernel)
+
 
 ```bash
 bin/arm-none-eabi-gcc -fno-common -O0 \
